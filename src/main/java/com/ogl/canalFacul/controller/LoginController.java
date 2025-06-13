@@ -9,4 +9,9 @@ public class LoginController {
     public String loginPage() {
         return "login";
     }
+
+    @GetMapping("/cadastro")
+    public String cadastro() {
+        return "cadastro";
+    }
 }
