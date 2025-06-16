@@ -1,0 +1,5 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="scriptsContent(extraScript)">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:if="${extraScript}" th:src="${extraScript}"></script>
+</body>
