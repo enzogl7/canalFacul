@@ -13,26 +13,29 @@ function logar() {
             'Content-Type': 'application/json',
             'X-Requested-With': 'XMLHttpRequest'
         },
-        body: JSON.stringify({
-            email: email,
-            password: password,
-        })
+        body: JSON.stringify({ email: email, password: password }),
+        credentials: 'include'
     })
         .then(response => {
             if (response.ok) {
-                console.log("Logado!");
-                window.location.href = '/login';
+                return response.json();
             } else if (response.status === 400) {
-                console.log("erro: Email e/ou Senha incorreto");
-                alert("Email e/ou senha incorretos");
+                $('#warningMessage').show()
             } else {
-                console.log("erro: Erro interno do servidor");
-                alert("Erro interno do servidor");
+                throw new Error("Erro interno do servidor");
+            }
+        })
+        .then(data => {
+            if (data.role === 'ADMIN') {
+                window.location.href = '/admin/home';
+            } else if (data.role === 'USER') {
+                window.location.href = '/user/home';
+            } else {
+                alert("Perfil desconhecido");
             }
         })
         .catch(error => {
             console.error('Erro na requisição:', error);
-            alert("Erro de conexão");
         });
 }
 

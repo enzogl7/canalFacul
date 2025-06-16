@@ -6,6 +6,8 @@ import com.ogl.canalFacul.model.dto.AuthenticationDTO;
 import com.ogl.canalFacul.model.dto.LoginResponseDTO;
 import com.ogl.canalFacul.model.dto.RegisterDTO;
 import com.ogl.canalFacul.repositories.UserRepository;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class LoginController {
@@ -37,13 +42,24 @@ public class LoginController {
     }
 
     @PostMapping("/logar")
-    public ResponseEntity logar(@RequestBody AuthenticationDTO data) {
+    public ResponseEntity logar(@RequestBody AuthenticationDTO data, HttpServletResponse response) {
         try {
             var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
             var authentication = authenticationManager.authenticate(usernamePassword);
             var token = tokenService.generateToken((Users) authentication.getPrincipal());
 
-            return ResponseEntity.ok(new LoginResponseDTO(token));
+            Cookie cookie = new Cookie("token", token);
+            cookie.setHttpOnly(true);
+            cookie.setSecure(true);
+            cookie.setPath("/");
+            cookie.setMaxAge(3600);
+            response.addCookie(cookie);
+
+             Users user = (Users) userRepository.findByEmail(data.email());
+            Map<String, Object> body = new HashMap<>();
+            body.put("token", token);
+            body.put("role", user.getRole());
+            return ResponseEntity.ok(body);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

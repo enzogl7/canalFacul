@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head th:replace="~{fragments/links :: headContent('')}"></head>
+<title>Painel Administrativo - CanalFacul</title>
+<body class="bg-gradient-to-r from-[#0F111A] to-[#181C27] text-text-primary min-h-screen">
+
+<div class="flex min-h-screen">
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+    <div class="flex-1 flex flex-col">
+        <header class="flex justify-between items-center p-6 border-b border-gray-800">
+            <div>
+                <p class="text-text-primary font-bold text-xl">Olá, <span th:text="${usuario.nome}"></span>!</p>
+                <span class="text-text-secondary text-sm">Aqui está uma visão geral de seus cursos, estudantes e comunicados.</span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="text-right">
+                    <span class="text-text-primary font-medium block leading-5" th:text="${usuario.nome}">Usuario</span>
+                    <span class="text-text-secondary text-sm" th:text="${usuario.role.name() == 'ADMIN' ? 'Administrador' : 'Usuário'}">Perfil</span>
+                </div>
+                <div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
+                    <span class="text-text-secondary font-semibold" th:text="${#strings.substring(usuario.nome, 0, 1)}">x</span>
+                </div>
+            </div>
+        </header>
+
+    <main class="p-6">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-primary-bg border border-gray-700 rounded-2xl p-6 relative transition-all duration-300 hover:bg-opacity-70 hover:border-accent hover:border-opacity-40 hover:transform hover:scale-105 hover:shadow-lg group">
+            <!-- TODO: Thymeleaf populando cada card com valores reais !-->
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="text-text-secondary text-sm mb-2">Total de cursos</h3>
+                    <div class="text-4xl font-bold text-accent mb-1">4</div>
+                    <p class="text-text-secondary text-sm">+1 este mês</p>
+                </div>
+                <div class="w-16 h-16 bg-gray-700 bg-opacity-60 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:bg-accent group-hover:bg-opacity-20">
+                    <svg class="w-8 h-8 text-accent transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-primary-bg border border-gray-700 rounded-2xl p-6 relative transition-all duration-300 hover:bg-opacity-70 hover:border-accent hover:border-opacity-40 hover:transform hover:scale-105 hover:shadow-lg group">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="text-text-secondary text-sm mb-2">Estudantes ativos</h3>
+                    <div class="text-4xl font-bold text-accent mb-1">58</div>
+                    <p class="text-text-secondary text-sm">+12 este mês</p>
+                </div>
+                <div class="w-16 h-16 bg-gray-700 bg-opacity-60 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:bg-accent group-hover:bg-opacity-20">
+                    <svg class="w-8 h-8 text-accent transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-primary-bg border border-gray-700 rounded-2xl p-6 relative transition-all duration-300 hover:bg-opacity-70 hover:border-accent hover:border-opacity-40 hover:transform hover:scale-105 hover:shadow-lg group">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="text-text-secondary text-sm mb-2">Notificações enviadas</h3>
+                    <div class="text-4xl font-bold text-accent mb-1">12</div>
+                    <p class="text-text-secondary text-sm">+5 este mês</p>
+                </div>
+                <div class="w-16 h-16 bg-gray-700 bg-opacity-60 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:bg-accent group-hover:bg-opacity-20">
+                    <svg class="w-8 h-8 text-accent transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 bg-primary-bg border border-gray-700 rounded-lg p-6">
+            <!-- TODO: Thymeleaf populando cada card com os cursos !-->
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h3 class="text-xl font-bold text-text-primary mb-1">Cursos cadastrados</h3>
+                    <p class="text-text-secondary text-sm">Gerencie todos seus cursos criados</p>
+                </div>
+                <button class="bg-button hover:bg-opacity-80 text-text-primary px-4 py-2 rounded-lg flex items-center space-x-2 transition-all">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <span>Novo curso</span>
+                </button>
+            </div>
+
+            <div class="mb-6 relative">
+                <div class="absolute inset-y-0 left-0 pl-3 mr-5 flex items-center pointer-events-none">
+                    <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                <input type="text" placeholder="Buscar cursos..." class="w-full bg-gray-700 border border-gray-600 rounded-lg pl-10 pr-4 py-3 text-text-primary placeholder-text-secondary focus:outline-none focus:border-accent">
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-gray-700 bg-opacity-50 border border-gray-600 rounded-lg p-4">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h4 class="font-semibold text-text-primary text-lg mb-1">Análise e desenvolvimento de sistemas</h4>
+                            <div class="flex items-center space-x-2">
+                                <p class="text-text-secondary text-sm">2025.1</p>
+                                <span class="text-text-secondary">•</span>
+                                <p class="text-text-secondary text-sm">Presencial</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="bg-button hover:bg-opacity-80 text-text-primary px-3 py-1 rounded text-sm transition-all">
+                                Enviar comunicado
+                            </button>
+                            <button class="text-text-secondary hover:text-text-primary">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4 text-sm text-text-secondary">
+                        <span>52 estudantes</span>
+                        <span>3 comunicados</span>
+                        <span>Última atualização em 12/06/2025</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-700 bg-opacity-50 border border-gray-600 rounded-lg p-4">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h4 class="font-semibold text-text-primary text-lg mb-1">Ciência da computação</h4>
+                            <div class="flex items-center space-x-2">
+                                <p class="text-text-secondary text-sm">2024.1</p>
+                                <span class="text-text-secondary">•</span>
+                                <p class="text-text-secondary text-sm">Semi-presencial</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="bg-button hover:bg-opacity-80 text-text-primary px-3 py-1 rounded text-sm transition-all">
+                                Enviar comunicado
+                            </button>
+                            <button class="text-text-secondary hover:text-text-primary">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4 text-sm text-text-secondary">
+                        <span>42 estudantes</span>
+                        <span>32 comunicados</span>
+                        <span>Última atualização em 16/06/2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            <div class="bg-primary-bg border border-gray-700 rounded-lg p-6 transition-all duration-300 hover:bg-opacity-70 hover:border-accent hover:border-opacity-40 hover:transform hover:scale-105 hover:shadow-lg">
+                <!-- TODO: Thymeleaf populando com atividades recentes !-->
+                <h3 class="text-xl font-bold text-text-primary mb-4">Atividades Recentes</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
+                        <div>
+                            <p class="text-text-primary text-sm">Comunicado enviado para ADS</p>
+                            <p class="text-text-secondary text-xs">Há 2 horas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-primary-bg border border-gray-700 rounded-lg p-6 transition-all duration-300 hover:bg-opacity-70 hover:border-accent hover:border-opacity-40 hover:transform hover:scale-105 hover:shadow-lg ">
+                <h3 class="text-xl font-bold text-text-primary mb-4">Ações rápidas</h3>
+
+                <div class="flex flex-col gap-3">
+                    <button class="w-full bg-button hover:bg-opacity-80 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                        Criar curso
+                    </button>
+                    <button class="w-full bg-button hover:bg-opacity-80 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                        Enviar comunicado geral
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+</body>
+</html>
