@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head th:replace="~{fragments/links :: headContent('')}"></head>
+<title>Novo curso - CanalFacul</title>
+<body class="bg-gradient-to-tr from-[#0F111A] via-[#151926] to-[#181C27] text-text-primary min-h-screen">
+
+<div class="flex min-h-screen">
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+    <div class="flex-1 flex flex-col">
+        <div th:replace="~{fragments/header :: header('Novo curso', 'Preencha os dados para criar um novo curso')}"></div>
+
+        <main class="p-6">
+            <div class="max-w mx-auto bg-[#1F2633] p-8 rounded-2xl shadow-lg border border-gray-700">
+                <h2 class="text-2xl font-bold mb-6 text-white">Cadastrar novo curso</h2>
+                <form th:action="@{/cursos/novo}" method="post" class="space-y-6">
+                    <div class="flex gap-6">
+                        <div class="flex-1">
+                            <label for="nome" class="block text-sm font-medium text-white mb-1">Nome do curso</label>
+                            <input type="text" id="nome" name="nome" placeholder="Ex.: Ciência da Computação, Análise e Desenvolvimento de sistemas..."
+                                   class="w-full px-4 py-2 rounded-lg bg-[#2A2F40] border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-accent transition" required>
+                        </div>
+                        <div class="flex-1">
+                            <label for="modalidade" class="block text-sm font-medium text-white mb-1">Modalidade</label>
+                            <select id="modalidade" name="modalidade" class="w-full px-4 py-2 rounded-lg bg-[#2A2F40] border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-accent transition">
+                                <option>Ao vivo</option>
+                                <option>EAD</option>
+                                <option>Flex</option>
+                                <option>Presencial</option>
+                                <option>Semipresencial</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="turma" class="block text-sm font-medium text-white mb-1">Turma</label>
+                        <input type="text" id="turma" name="turma" placeholder="Ex.: 2025.1, 2024.2..."
+                               class="w-full px-4 py-2 rounded-lg bg-[#2A2F40] border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-accent transition" required>
+                    </div>
+
+                    <div>
+                        <label for="descricao" class="block text-sm font-medium text-white mb-1">Descrição</label>
+                        <textarea id="descricao" name="descricao" rows="4"
+                                  class="w-full px-4 py-2 rounded-lg bg-[#2A2F40] border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-accent transition" required></textarea>
+                    </div>
+
+                    <div>
+                        <label for="categoria" class="block text-sm font-medium text-white mb-1">Categoria</label>
+                        <input type="text" id="categoria" name="categoria"
+                               class="w-full px-4 py-2 rounded-lg bg-[#2A2F40] border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-accent transition">
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit"
+                                class="bg-accent text-white px-6 py-3 rounded-xl hover:bg-green-600 transition font-semibold shadow-lg">
+                            Criar curso
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+
+</body>
+</html>
