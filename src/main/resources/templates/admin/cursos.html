@@ -9,9 +9,72 @@
   <div class="flex-1 flex flex-col">
     <div th:replace="~{fragments/header :: header('Meus cursos', 'Visualize e gerencie todos os seus cursos criados')}"></div>
 
-    <main class="p-6">
-      <!-- conteudo principal !-->
+    <main class="p-6 space-y-6">
+      <section class="bg-gray-800 bg-opacity-60 border border-gray-700 rounded-2xl p-6 shadow-xl">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-semibold text-text-primary">Meus cursos</h2>
+          <a href="/admin/novocurso" class="bg-button hover:bg-opacity-80 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+            + Novo curso
+          </a>
+        </div>
+
+        <div class="bg-gray-900 bg-opacity-60 rounded-xl border border-gray-700 shadow-inner overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left text-text-primary">
+              <thead class="bg-gray-700/50 border-b border-gray-600">
+              <tr>
+                <th class="py-3 px-5">Nome do Curso</th>
+                <th class="py-3 px-5">Modalidade</th>
+                <th class="py-3 px-5">Turma</th>
+                <th class="py-3 px-5">Qtde. Alunos</th>
+                <th class="py-3 px-5">Descrição</th>
+                <th class="py-3 px-5 text-center">Ações</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="curso, iter : ${cursos}"
+                  th:classappend="${iter.index % 2 == 0} ? 'bg-gray-800' : 'bg-gray-700'"
+                  class="border-b border-gray-700 hover:bg-gray-600/40 transition-colors">
+                <td class="py-3 px-5 text-center" th:text="${curso.nome}">Nome</td>
+                <td class="py-3 px-5 text-center" th:text="${curso.modalidade}">Modalidade</td>
+                <td class="py-3 px-5 text-center" th:text="${curso.turma}">Turma</td>
+                <td class="py-3 px-5 text-center">0</td>
+                <td class="py-3 px-5 text-center" th:text="${curso.descricao}">Descrição</td>
+                <td class="py-3 px-5 text-center">
+                  <div class="flex justify-center items-center gap-3">
+                    <button class="text-blue-400 hover:text-blue-500 transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7s-8.268-2.943-9.542-7z" />
+                      </svg>
+                    </button>
+                    <button class="text-accent hover:text-accent/80 transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M15.232 5.232a2.828 2.828 0 1 1 4 4L7 21H3v-4L15.232 5.232z" />
+                      </svg>
+                    </button>
+                    <button class="text-red-500 hover:text-red-600 transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr th:if="${#lists.isEmpty(cursos)}">
+                <td colspan="6" class="py-4 text-center text-text-secondary">Nenhum curso cadastrado.</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
     </main>
+  </div>
 
 </body>
 </html>

@@ -9,7 +9,7 @@ function criarCurso() {
         return;
     }
 
-    fetch('/admin/criarcurso', {
+    fetch('/admin/novocurso', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -21,7 +21,7 @@ function criarCurso() {
         .then(async response => {
             const mensagem = await response.text();
             if (response.ok) {
-                swalSucesso('Curso criado com sucesso!');
+                swalSucesso('Curso criado com sucesso!', '/admin/cursos');
             } else {
                 swalErro(mensagem || 'Erro ao criar curso.');
             }

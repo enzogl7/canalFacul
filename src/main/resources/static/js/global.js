@@ -6,8 +6,21 @@ const CustomSwal = Swal.mixin({
     buttonsStyling: true
 });
 
-function swalSucesso(texto = 'Operação realizada com sucesso') {
-    CustomSwal.fire({ title: 'Sucesso!', text: texto, icon: 'success' });
+function swalSucesso(texto = 'Operação realizada com sucesso', url = '') {
+    CustomSwal.fire({
+        title: 'Sucesso!',
+        text: texto,
+        icon: 'success',
+        confirmButtonText: 'OK'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            if (url && url.trim() !== '') {
+                window.location.href = url;
+            } else {
+                window.location.reload();
+            }
+        }
+    });
 }
 
 function swalErro(texto = 'Algo deu errado') {

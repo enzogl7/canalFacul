@@ -22,4 +22,6 @@ public class Curso {
     private String turma;
     private String descricao;
     private String codigoCadastro;
+    @ManyToOne
+    private Users usuarioAdmin;
 }
