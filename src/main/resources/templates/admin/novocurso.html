@@ -12,21 +12,20 @@
         <main class="p-6">
             <div class="max-w mx-auto bg-[#1F2633] p-8 rounded-2xl shadow-lg border border-gray-700">
                 <h2 class="text-2xl font-bold mb-6 text-white">Cadastrar novo curso</h2>
-                <form th:action="@{/cursos/novo}" method="post" class="space-y-6">
                     <div class="flex gap-6">
                         <div class="flex-1">
-                            <label for="nome" class="block text-sm font-medium text-white mb-1">Nome do curso</label>
-                            <input type="text" id="nome" name="nome" placeholder="Ex.: Ciência da Computação, Análise e Desenvolvimento de sistemas..."
+                            <label for="nomeCurso" class="block text-sm font-medium text-white mb-1">Nome do curso</label>
+                            <input type="text" id="nomeCurso" name="nomeCurso" placeholder="Ex.: Ciência da Computação, Análise e Desenvolvimento de sistemas..."
                                    class="w-full px-4 py-2 rounded-lg bg-[#2A2F40] border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-accent transition" required>
                         </div>
                         <div class="flex-1">
                             <label for="modalidade" class="block text-sm font-medium text-white mb-1">Modalidade</label>
                             <select id="modalidade" name="modalidade" class="w-full px-4 py-2 rounded-lg bg-[#2A2F40] border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-accent transition">
-                                <option>Ao vivo</option>
-                                <option>EAD</option>
-                                <option>Flex</option>
-                                <option>Presencial</option>
-                                <option>Semipresencial</option>
+                                <option value="AO_VIVO">Ao vivo</option>
+                                <option value="EAD">EAD</option>
+                                <option value="FLEX">Flex</option>
+                                <option value="PRESENCIAL">Presencial</option>
+                                <option value="SEMI_PRESENCIAL">Semipresencial</option>
                             </select>
                         </div>
                     </div>
@@ -43,23 +42,17 @@
                                   class="w-full px-4 py-2 rounded-lg bg-[#2A2F40] border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-accent transition" required></textarea>
                     </div>
 
-                    <div>
-                        <label for="categoria" class="block text-sm font-medium text-white mb-1">Categoria</label>
-                        <input type="text" id="categoria" name="categoria"
-                               class="w-full px-4 py-2 rounded-lg bg-[#2A2F40] border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-accent transition">
-                    </div>
-
                     <div class="pt-4">
-                        <button type="submit"
-                                class="bg-accent text-white px-6 py-3 rounded-xl hover:bg-green-600 transition font-semibold shadow-lg">
+                        <button type="submit" onclick="criarCurso()"
+                                class="bg-button hover:bg-opacity-80 text-white px-6 py-3 rounded-xl  transition font-semibold shadow-lg">
                             Criar curso
                         </button>
                     </div>
-                </form>
             </div>
         </main>
     </div>
 </div>
-
+<script th:src="@{/js/curso.js}" type="text/javascript"></script>
+<footer th:replace="~{fragments/scripts :: scriptsContent('')}"></footer>
 </body>
 </html>
