@@ -28,7 +28,7 @@ public class CursoServiceImpl implements CursoService {
 
     @Override
     public Curso findById(String id) {
-        return cursoRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Curso com ID: " + id + " não encontrado."));
+        return cursoRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Curso não encontrado para esse ID."));
     }
 
     @Override

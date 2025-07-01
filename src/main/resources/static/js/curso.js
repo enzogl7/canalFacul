@@ -54,12 +54,20 @@ function excluirCurso(id) {
     })
         .then(async response => {
             CustomSwal.close();
-            const data = await response.json();
+            let data = {};
+            if (response.status !== 204) {
+                try {
+                    data = await response.json();
+                } catch (e) {
+                    console.warn('Resposta sem JSON:', e);
+                }
+            }
             let mensagem = data.message || 'Erro desconhecido.';
+
             if (response.ok) {
                 swalSucesso('Curso excluído com sucesso!', '/admin/cursos');
             } else {
-                swalErro(mensagem || 'Erro ao criar curso.');
+                swalErro(mensagem || 'Erro ao excluir curso.');
             }
         })
         .catch(error => {

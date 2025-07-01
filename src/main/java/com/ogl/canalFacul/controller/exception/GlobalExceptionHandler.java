@@ -40,6 +40,7 @@ public class GlobalExceptionHandler {
     // ERRO GERAL (QUALQUER UM)
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGeneralError(Exception ex) {
+        ex.printStackTrace();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro inesperado no servidor da aplicação.\n Tente novamente mais tarde ou entre em contato com o suporte.");
     }
 }
