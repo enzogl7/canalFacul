@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface CursoService {
     void saveCurso(Curso curso);
+    void deleteCurso(Curso curso);
     List<Curso> findAllByUsuarioAdmin(Users user);
+    Curso findById(String id);
 }

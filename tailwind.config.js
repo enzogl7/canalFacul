@@ -4,6 +4,9 @@ module.exports = {
       './src/main/resources/templates/**/*.html',
       './src/main/resources/static/**/*.js',
   ],
+    safelist: [
+        'text-accent',
+    ],
   theme: {
     extend: {
         colors: {

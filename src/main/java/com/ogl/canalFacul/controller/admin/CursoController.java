@@ -1,7 +1,6 @@
 package com.ogl.canalFacul.controller.admin;
 
 import com.ogl.canalFacul.model.Curso;
-import com.ogl.canalFacul.model.Users;
 import com.ogl.canalFacul.model.dto.CursoDTO;
 import com.ogl.canalFacul.service.CursoService;
 import com.ogl.canalFacul.service.UserService;
@@ -11,10 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -54,6 +50,13 @@ public class CursoController {
         cursoService.saveCurso(novoCurso);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(novoCurso);
+    }
+
+    @DeleteMapping("/excluircurso")
+    public ResponseEntity<?> excluirCurso(@RequestParam String id) {
+        Curso curso = cursoService.findById(id);
+        cursoService.deleteCurso(curso);
+        return ResponseEntity.ok().build();
     }
 
 }

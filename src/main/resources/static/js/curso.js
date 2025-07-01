@@ -28,6 +28,42 @@ function criarCurso() {
         })
         .catch(error => {
             console.error('Erro na requisição:', error);
-            swalErro('Erro de rede. Tente novamente mais tarde.');
+            swalErroInterno()
+        });
+}
+
+function confirmacaoExcluirCurso(dataButton) {
+    swalConfirmarAcao('Tem certeza de que deseja apagar este curso?')
+        .then((resultado) => {
+            if (resultado.isConfirmed) {
+                excluirCurso(dataButton.dataset.id)
+            }
+        });
+}
+
+function excluirCurso(id) {
+    swalLoading('Excluindo curso')
+
+    fetch(`/admin/excluircurso?id=${encodeURIComponent(id)}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        credentials: 'include'
+    })
+        .then(async response => {
+            CustomSwal.close();
+            const data = await response.json();
+            let mensagem = data.message || 'Erro desconhecido.';
+            if (response.ok) {
+                swalSucesso('Curso excluído com sucesso!', '/admin/cursos');
+            } else {
+                swalErro(mensagem || 'Erro ao criar curso.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+            swalErroInterno()
         });
 }

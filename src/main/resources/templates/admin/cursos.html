@@ -13,14 +13,15 @@
       <section class="bg-gray-800 bg-opacity-60 border border-gray-700 rounded-2xl p-6 shadow-xl">
         <div class="flex justify-between items-center mb-6">
           <h2 class="text-2xl font-semibold text-text-primary">Meus cursos</h2>
-          <a href="/admin/novocurso" class="bg-button hover:bg-opacity-80 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+          <a href="/admin/novocurso"
+             class="inline-flex items-center justify-center bg-button text-white hover:bg-button/90 font-medium rounded-md text-sm px-4 py-2 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-button">
             + Novo curso
           </a>
         </div>
 
         <div class="bg-gray-900 bg-opacity-60 rounded-xl border border-gray-700 shadow-inner overflow-hidden">
           <div class="overflow-x-auto">
-            <table class="w-full text-sm text-left text-text-primary">
+            <table class="w-full text-sm text-center text-text-primary">
               <thead class="bg-gray-700/50 border-b border-gray-600">
               <tr>
                 <th class="py-3 px-5">Nome do Curso</th>
@@ -56,7 +57,7 @@
                               d="M15.232 5.232a2.828 2.828 0 1 1 4 4L7 21H3v-4L15.232 5.232z" />
                       </svg>
                     </button>
-                    <button class="text-red-500 hover:text-red-600 transition-colors">
+                    <button class="text-red-500 hover:text-red-600 transition-colors" title="Deletar curso" onclick="confirmacaoExcluirCurso(this)" th:data-id="${curso.id}">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M6 18L18 6M6 6l12 12" />
@@ -76,5 +77,7 @@
     </main>
   </div>
 
+<script th:src="@{/js/curso.js}" type="text/javascript"></script>
+<footer th:replace="~{fragments/scripts :: scriptsContent('')}"></footer>
 </body>
 </html>

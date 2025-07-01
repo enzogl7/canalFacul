@@ -1,5 +1,6 @@
 package com.ogl.canalFacul.service.impl;
 
+import com.ogl.canalFacul.controller.exception.RecursoNaoEncontradoException;
 import com.ogl.canalFacul.model.Curso;
 import com.ogl.canalFacul.model.Users;
 import com.ogl.canalFacul.repositories.CursoRepository;
@@ -23,6 +24,16 @@ public class CursoServiceImpl implements CursoService {
     @Override
     public List<Curso> findAllByUsuarioAdmin(Users user) {
         return cursoRepository.findAllByUsuarioAdmin(user);
+    }
+
+    @Override
+    public Curso findById(String id) {
+        return cursoRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Curso com ID: " + id + " não encontrado."));
+    }
+
+    @Override
+    public void deleteCurso(Curso curso) {
+        cursoRepository.delete(curso);
     }
 
 }
