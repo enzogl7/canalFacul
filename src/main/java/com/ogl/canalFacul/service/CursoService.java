@@ -10,4 +10,6 @@ public interface CursoService {
     void deleteCurso(Curso curso);
     List<Curso> findAllByUsuarioAdmin(Users user);
     Curso findById(String id);
+    Integer countTotalCursoByUsuario(Users user);
+    Integer countCursosMesByUsuario(Users user);
 }

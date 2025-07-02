@@ -17,8 +17,8 @@
             <div class="flex justify-between items-start">
                 <div>
                     <h3 class="text-text-secondary text-sm mb-2">Total de cursos</h3>
-                    <div class="text-4xl font-bold text-accent mb-1">4</div>
-                    <p class="text-text-secondary text-sm">+1 este mês</p>
+                    <div class="text-4xl font-bold text-accent mb-1" th:text="${totalCursos}"></div>
+                    <p class="text-text-secondary text-sm" th:text="'+' + ${totalMes} + ' este mês'"></p>
                 </div>
                 <div class="w-16 h-16 bg-gray-700 bg-opacity-60 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:bg-accent group-hover:bg-opacity-20">
                     <svg class="w-8 h-8 text-accent transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -31,7 +31,7 @@ public class LoginController {
     @Autowired
     private TokenService tokenService;
 
-    @GetMapping("/")
+    @GetMapping(value = {"/", "/login"})
     public String loginPage() {
         return "login";
     }

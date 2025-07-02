@@ -7,6 +7,9 @@ import com.ogl.canalFacul.repositories.CursoRepository;
 import com.ogl.canalFacul.service.CursoService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
 @Service
@@ -36,4 +39,13 @@ public class CursoServiceImpl implements CursoService {
         cursoRepository.delete(curso);
     }
 
+    @Override
+    public Integer countTotalCursoByUsuario(Users user) {
+        return cursoRepository.countAllByUsuarioAdmin(user);
+    }
+
+    @Override
+    public Integer countCursosMesByUsuario(Users user) {
+        return cursoRepository.countAllByUsuarioAdminAndCreatedAtBetween(user, LocalDate.now().withDayOfMonth(1).atStartOfDay(),  LocalDate.now().with(TemporalAdjusters.lastDayOfMonth()).atTime(23, 59, 59));
+    }
 }
